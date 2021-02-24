@@ -1,7 +1,8 @@
 package com.ecommerce.service;
 
-import java.util.Optional;
 
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ import com.ecommerce.repository.ProductoRepository;
 @Service
 public class ProductoServiceIMP implements ProductoService {
 
-	@Autowired
+	@Autowired(required = true)
 	private ProductoRepository productoRepository;
 	
 	@Override
@@ -52,4 +53,18 @@ public class ProductoServiceIMP implements ProductoService {
 	public Optional<Producto> findById(Integer id) {
 		return productoRepository.findById(id);
 	}
+
+	//para leer los productos escritos
+	@Override
+	public List<Producto> findAll(String keyWord) {
+		if( keyWord != null) {
+			return productoRepository.findAll(keyWord);
+			
+		}
+		return productoRepository.findAll();
+		
+	}
+
+	
+	
 }

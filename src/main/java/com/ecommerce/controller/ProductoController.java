@@ -16,22 +16,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.ecommerce.entity.Producto;
 import com.ecommerce.service.ProductoService;
 
+
 //devuelve por defecto un objeto JSon
 @RestController
-@RequestMapping("/api/productos")
+@RequestMapping("/producto/api/productos")
 public class ProductoController {
 	//inyección de dependencia
 	
-	@Autowired
+	@Autowired(required = true)
 	private ProductoService productoService;
-	
+
 	//create a new producto
 	@PostMapping
-	//mandar el producto
 	public ResponseEntity<?> create(@RequestBody Producto p){
 		
 		//devuelve el código 201 para saber que ha creado con exito un usuario
@@ -39,9 +38,9 @@ public class ProductoController {
 	}
 	
 	//Read an producto por id 
-	@GetMapping("/{id}")
-	public ResponseEntity <?> read(@PathVariable (value = "id") Integer userId){
-		Optional <Producto> oProducto = productoService.findById(userId);
+	@GetMapping("verDetallesProducto/{id}")
+	public ResponseEntity <?> read(@PathVariable (value = "id") Integer productoId){
+		Optional <Producto> oProducto = productoService.findById(productoId);
 		
 		//SI no hay un objeto
 		if(!oProducto.isPresent()){
@@ -70,7 +69,7 @@ public class ProductoController {
 	}
 	// delete an producto
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity <?> delete (@PathVariable(value = "id") Integer productoId){
 		if(!productoService.findById(productoId).isPresent()) {
 			return ResponseEntity.notFound().build();
@@ -80,7 +79,7 @@ public class ProductoController {
 	}
 	
 	//leer todos los productos
-	@GetMapping
+	@GetMapping("/readAll")
 	public List<Producto> readAll(){
 		//transformación de objeto iterable a una lista
 		List<Producto> listaProductos = StreamSupport
@@ -89,4 +88,18 @@ public class ProductoController {
 		
 		return listaProductos;		
 	}
+	
+	@GetMapping("/buscarProductos/{nombre}")
+	public List <Producto> buscarProductos(@PathVariable (value = "nombre") String nombre){
+		System.out.println("esto es: " + nombre );
+		if (nombre != null) {
+			System.out.println("esto es: " + nombre );
+			productoService.findAll(nombre);
+		}
+		//personalizas este return para que nos mande algún error
+		return productoService.findAll(nombre);
+	}
+
+	
+	//búsqueda de productos con formato islike para encontrar productos similares
 }
