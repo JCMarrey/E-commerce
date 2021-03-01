@@ -1,10 +1,16 @@
 package com.ecommerce.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -27,7 +33,7 @@ public class Producto {
 		this.id = id;
 	}
 
-	public Producto(int id, String nombre, String descripcion, String tags, String status, String img, String categoria,
+	public Producto(int id, String nombre, String descripcion, float precio, String tags, String status, String img, String categoria,
 			int calificacion) {
 	
 		this.id = id;
@@ -38,7 +44,25 @@ public class Producto {
 		this.img = img;
 		this.categoria = categoria;
 		this.calificacion = calificacion;
+		this.precio = precio;
 	}
+	
+	
+
+	public Producto(String nombre, String descripcion, float precio, String tags, String status, String img,
+			String categoria, int calificacion) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.tags = tags;
+		this.status = status;
+		this.img = img;
+		this.categoria = categoria;
+		this.calificacion = calificacion;
+	}
+
+
 
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +73,9 @@ public class Producto {
 	
 	@Column(name="descripcion")
 	private String descripcion;
+	
+	@Column(name = "precio")
+	private float precio;
 	
 	@Column(name="tags")
 	private String tags;
@@ -64,6 +91,9 @@ public class Producto {
 	
 	@Column(name="calificacion")
 	private int calificacion;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productos")
+	private Set <Carrito> carrito = new HashSet <>();
 
 	public int getId() {
 		return id;
@@ -128,6 +158,24 @@ public class Producto {
 	public void setCalificacion(int calificacion) {
 		this.calificacion = calificacion;
 	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
+	public Set<Carrito> getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(Set<Carrito> carrito) {
+		this.carrito = carrito;
+	}
+	
+	
 	
 	
 		

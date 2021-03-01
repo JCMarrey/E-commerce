@@ -37,6 +37,19 @@ public class MProducto {
 		this.categoria = p.getCategoria();
 		this.calificacion = p.getCalificacion();
 	}
+	public MProducto(int id, String nombre, String descripcion, float precio, String tags, String img, String categoria,
+			int calificacion, String status) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.tags = tags;
+		this.img = img;
+		this.categoria = categoria;
+		this.calificacion = calificacion;
+		this.status = status;
+	}
 	
 	public int getId() {
 		return id;
@@ -86,13 +99,24 @@ public class MProducto {
 	public void setCalificacion(int calificacion) {
 		this.calificacion = calificacion;
 	}
+	
+	public float getPrecio() {
+		return precio;
+	}
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
+
+
 	private String nombre;
 	private String descripcion;
+	private float precio;
 	private String tags;
-	private String status;
 	private String img;
 	private String categoria;
 	private int calificacion;
+	private String status;
 	
 	
 }

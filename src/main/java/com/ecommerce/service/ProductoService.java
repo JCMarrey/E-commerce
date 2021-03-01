@@ -17,7 +17,6 @@ public interface ProductoService {
 
 	public Page <Producto> findAll(Pageable pageable);
 	
-	
 	//devuelve un optional
 	
 	public Optional <Producto> findById(Integer id);
