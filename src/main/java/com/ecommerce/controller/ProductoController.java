@@ -26,6 +26,8 @@ import com.ecommerce.service.ProductoService;
 public class ProductoController {
 	//inyección de dependencia
 	
+	
+	
 	@Autowired(required = true)
 	private ProductoService productoService;
 
@@ -40,7 +42,7 @@ public class ProductoController {
 	//Read an producto por id 
 	@GetMapping("verDetallesProducto/{id}")
 	public ResponseEntity <?> read(@PathVariable (value = "id") Integer productoId){
-		Optional <Producto> oProducto = productoService.findById(productoId);
+		Optional <Producto> oProducto = productoService.verDetallesProducto(productoId);
 		
 		//SI no hay un objeto
 		if(!oProducto.isPresent()){
@@ -51,10 +53,19 @@ public class ProductoController {
 		return ResponseEntity.ok(oProducto);
 	
 	}
+	
+	@GetMapping("buscarProducto/{id}")
+	public Producto buscarProducto(@PathVariable (value = "id") Integer productoId){
+		Producto oProducto = productoService.buscarProducto(productoId);
+		
+		return oProducto;
+	}
+	
+	
 	//update an product
 	@PutMapping("/{id}")
 	public ResponseEntity <?> update(@RequestBody Producto p, @PathVariable(value = "id") Integer productoId){
-		Optional <Producto> producto = productoService.findById(productoId);
+		Optional <Producto> producto = productoService.verDetallesProducto(productoId);
 		
 		//checar si ha devuelvo algún objeto
 		if(!producto.isPresent()) {
@@ -71,7 +82,7 @@ public class ProductoController {
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity <?> delete (@PathVariable(value = "id") Integer productoId){
-		if(!productoService.findById(productoId).isPresent()) {
+		if(!productoService.verDetallesProducto(productoId).isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
 		productoService.deleteById(productoId);
@@ -102,4 +113,14 @@ public class ProductoController {
 
 	
 	//búsqueda de productos con formato islike para encontrar productos similares
+
+	
+	public List <Producto> misProductosCarrito(int idCarrito){
+		return productoService.misProductosCarrito(idCarrito);
+	}
+
 }
+
+
+
+

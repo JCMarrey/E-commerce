@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="productos")
@@ -92,6 +94,7 @@ public class Producto {
 	@Column(name="calificacion")
 	private int calificacion;
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productos")
 	private Set <Carrito> carrito = new HashSet <>();
 

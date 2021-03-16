@@ -48,12 +48,6 @@ public class ProductoServiceIMP implements ProductoService {
 		productoRepository.deleteById(id);	
 	}
 
-	@Override
-	@Transactional (readOnly = true)
-	public Optional<Producto> findById(Integer id) {
-		return productoRepository.findById(id);
-	}
-
 	//para leer los productos escritos
 	@Override
 	public List<Producto> findAll(String keyWord) {
@@ -65,6 +59,24 @@ public class ProductoServiceIMP implements ProductoService {
 		
 	}
 
+	@Override
+	public Optional<Producto> verDetallesProducto(int idProducto) {
+		
+		return this.productoRepository.findById(idProducto);
+	}
+
 	
 	
+	
+	@Override
+	@Transactional
+	public Producto buscarProducto(int idProducto) {
+		return productoRepository.buscarProducto(idProducto);
+	}
+
+	@Override
+	public List<Producto> misProductosCarrito(int idCarrito) {
+		return productoRepository.misProductosCarrito(idCarrito);
+	}
+
 }

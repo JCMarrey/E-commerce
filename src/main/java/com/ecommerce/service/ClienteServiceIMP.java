@@ -63,7 +63,7 @@ public class ClienteServiceIMP implements ClienteService {
 
 	@Override
 	public int  buscarCarritoUsuario(String nombreUsuario) {
-		return clienteRepository. buscarCarritoUsuario(nombreUsuario);
+		return clienteRepository.buscarCarritoUsuario(nombreUsuario);
 	}
 
 }

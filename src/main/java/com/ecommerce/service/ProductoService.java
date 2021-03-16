@@ -19,7 +19,7 @@ public interface ProductoService {
 	
 	//devuelve un optional
 	
-	public Optional <Producto> findById(Integer id);
+	public Optional <Producto>  verDetallesProducto(int idProducto);
 
 	//guardar alguna entidad o actualizarla y regresar el producto
 	
@@ -28,5 +28,10 @@ public interface ProductoService {
 	public void deleteById(Integer id);
 	
 	public List<Producto> findAll (String keyWord);
+	
+	public List <Producto> misProductosCarrito (int idCarrito);
+	//buscar un sólo producto
+	public Producto buscarProducto(int idProducto);
+	
 	
 }

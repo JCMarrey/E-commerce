@@ -18,6 +18,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Carrito")
@@ -49,6 +50,7 @@ public class Carrito {
 	private Cliente cliente;
 	
 	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name ="carrito_has_product",
 		joinColumns = {@JoinColumn (name = "carritoId" )},
