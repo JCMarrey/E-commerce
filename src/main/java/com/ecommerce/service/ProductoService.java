@@ -34,4 +34,7 @@ public interface ProductoService {
 	public Producto buscarProducto(int idProducto);
 	
 	
+	//Busqueda productos por categoria
+	public List<Producto> findProductosCategoria (String keyWord);
+	
 }

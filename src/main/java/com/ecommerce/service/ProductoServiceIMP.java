@@ -18,28 +18,26 @@ public class ProductoServiceIMP implements ProductoService {
 	@Autowired(required = true)
 	private ProductoRepository productoRepository;
 	
-	@Override
 	//método de lectura solo devuelve productos
+	@Override
 	@Transactional(readOnly = true)
-	public Iterable<Producto> findAll() {
-		
-		return productoRepository.findAll();
-	}
+	public Iterable<Producto> findAll() { return productoRepository.findAll(); }
+	
 	
 	@Transactional(readOnly = true)
 	@Override
 	public Page<Producto> findAll(Pageable pageable) {
-	
 		//método que página
 		return productoRepository.findAll(pageable);
 	}
 
+	
 	@Override
 	@Transactional
 	public Producto save(Producto p) {
-		
 		return productoRepository.save(p);
 	}
+	
 	
 	//ahora si hace cambios en la BD
 	@Transactional
@@ -48,25 +46,21 @@ public class ProductoServiceIMP implements ProductoService {
 		productoRepository.deleteById(id);	
 	}
 
+	
 	//para leer los productos escritos
 	@Override
 	public List<Producto> findAll(String keyWord) {
 		if( keyWord != null) {
-			return productoRepository.findAll(keyWord);
-			
+			return productoRepository.findAll(keyWord);		
 		}
 		return productoRepository.findAll();
-		
 	}
 
 	@Override
 	public Optional<Producto> verDetallesProducto(int idProducto) {
-		
 		return this.productoRepository.findById(idProducto);
 	}
 
-	
-	
 	
 	@Override
 	@Transactional
@@ -78,5 +72,15 @@ public class ProductoServiceIMP implements ProductoService {
 	public List<Producto> misProductosCarrito(int idCarrito) {
 		return productoRepository.misProductosCarrito(idCarrito);
 	}
+
+	@Override
+	public List<Producto> findProductosCategoria(String categoria) {
+		if( categoria != null) {
+			return productoRepository.productosCategoria(categoria); //paginate		
+		}
+		return productoRepository.findAll();
+	}
+
+	
 
 }

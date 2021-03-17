@@ -56,9 +56,9 @@ public class CarritoController {
 	public String borrarProductoCarrito (@PathVariable (value = "idCarrito") int idCarrito, @PathVariable
 	(value = "idProducto") int idProducto) {
 		
-		//carritoService.eliminarProductoCarritoById(idCarrito, idProducto);
-		busquedaService.agregarFechaProductoEliminado(idCarrito);
-		return "producto con id: "+ idProducto + " eliminado .. recargar página con prpductos restantes" ;
+	//carritoService.eliminarProductoCarritoById(idCarrito, idProducto);
+	busquedaService.agregarFechaProductoEliminado(idCarrito);
+	 	return "producto con id: "+ idProducto + " eliminado .. recargar página con prpductos restantes" ;
 	}
 
 }
