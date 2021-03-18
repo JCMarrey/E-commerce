@@ -15,7 +15,6 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 	
 	//método para realizar la búsqueda de productos con palabras claves
 
-	
 	@Query(
 		value = "SELECT*FROM productos WHERE productos.nombre LIKE %?1%",
 		nativeQuery = true)
@@ -36,5 +35,10 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 	
 	public List <Producto> misProductosCarrito (int idCarrito);
 	
+	
+	@Query(
+			value = "SELECT*FROM productos WHERE productos.categoria = ?1",
+			nativeQuery = true)
+	public List <Producto> productosCategoria(String categoria);
 	
 }

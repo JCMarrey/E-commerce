@@ -8,6 +8,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.ecommerce.service.ProductoService;
 
 
 //devuelve por defecto un objeto JSon
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/producto/api/productos")
 public class ProductoController {
@@ -119,6 +121,18 @@ public class ProductoController {
 	public List <Producto> misProductosCarrito(int idCarrito){
 		return productoService.misProductosCarrito(idCarrito);
 	}
+	
+	//Buscar productos por categoria
+	@GetMapping("/productos-categoria/{categoria}")
+	public List <Producto> productosCategoria(@PathVariable (value="categoria") String categoria){
+		
+		if(categoria != null){
+			return productoService.findProductosCategoria(categoria);
+		}
+		return productoService.findProductosCategoria(categoria);
+		
+	}
+	
 
 }
 
