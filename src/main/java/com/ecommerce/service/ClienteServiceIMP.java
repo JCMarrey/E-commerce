@@ -20,7 +20,6 @@ public class ClienteServiceIMP implements ClienteService {
 	public Cliente save(Cliente c) {
 		
 		//buscar si el nombre de usuario ya existe...
-		
 		Iterable<Cliente> clientes = clienteRepository.findAll();
 		for (Cliente clienteN : clientes) {
 			//si existe algún usuario con el mismo nombre de usuario no se agrega.

@@ -36,7 +36,7 @@ public class Cliente {
 	@Column(name = "sexo")
 	private char sexo;
 	
-	@Column(name = "correoElectrónico")
+	@Column(name = "correoElectronico")
 	private String correoElectronico;
 	
 	@Column(name = "password")
@@ -52,7 +52,7 @@ public class Cliente {
 	private String tipoTarjeta;
 	
 	@Column(name = "numeroTarjeta")
-	private long numeroTarjeta;
+	private long  numeroTarjeta;
 	
 	@Column(name ="ipUsuario")
 	private String ipUsuario;
@@ -75,7 +75,7 @@ public class Cliente {
 		this.idUsuario = idUsuario;
 	}
 	public Cliente(String nombreUsuario, String nombreCliente, String apellidos, byte edad, char sexo,
-			String correoElectronico, String domicilio, long telefono, String tipoTarjeta, long numeroTarjeta,
+			String correoElectronico, String password, String domicilio, long telefono, String tipoTarjeta, long numeroTarjeta,
 			Carrito carrito) {
 		this.nombreUsuario = nombreUsuario;
 		this.nombreCliente = nombreCliente;
@@ -88,6 +88,29 @@ public class Cliente {
 		this.tipoTarjeta = tipoTarjeta;
 		this.numeroTarjeta = numeroTarjeta;
 		this.carritoCompras = carrito;
+		this.password = password;
+	}
+	
+	
+	
+	
+	public Cliente(int idUsuario, String nombreUsuario, String nombreCliente, String apellidos, byte edad, char sexo,
+			String correoElectronico, String password, String domicilio, long telefono, String tipoTarjeta,
+			long numeroTarjeta, String ipUsuario) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nombreUsuario = nombreUsuario;
+		this.nombreCliente = nombreCliente;
+		this.apellidos = apellidos;
+		this.edad = edad;
+		this.sexo = sexo;
+		this.correoElectronico = correoElectronico;
+		this.password = password;
+		this.domicilio = domicilio;
+		this.telefono = telefono;
+		this.tipoTarjeta = tipoTarjeta;
+		this.numeroTarjeta = numeroTarjeta;
+		this.ipUsuario = ipUsuario;
 	}
 	public int getIdUsuario() {
 		return idUsuario;

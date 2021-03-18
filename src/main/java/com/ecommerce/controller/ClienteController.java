@@ -60,6 +60,6 @@ public class ClienteController {
 			
 			int idCarrio = clienteService.buscarCarritoUsuario(nombreUsuario);
 				//continuar con la vista generar de productos
-			return " urlListaProductos " + " idCarrio: " + String.valueOf(idCarrio) + " userName ="+ nombreUsuario;
+			return "Usuario iniciando sesión... urlListaProductos " + " idCarrio: " + String.valueOf(idCarrio) + " userName ="+ nombreUsuario;
 		}
 }
