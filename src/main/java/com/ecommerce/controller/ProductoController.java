@@ -32,10 +32,10 @@ public class ProductoController {
 	private ProductoService productoService;
 
 	//create a new producto
-	@PostMapping
+	@PostMapping("/add")
 	public ResponseEntity<?> create(@RequestBody Producto p){
 		
-		//devuelve el código 201 para saber que ha creado con exito un usuario
+		//devuelve el código 201 para saber que ha creado con exito un producto
 		return ResponseEntity.status(HttpStatus.CREATED).body(productoService.save(p));
 	}
 	
@@ -100,6 +100,8 @@ public class ProductoController {
 		return listaProductos;		
 	}
 	
+	//búsqueda de productos con formato islike para encontrar productos similares
+
 	@GetMapping("/buscarProductos/{nombre}")
 	public List <Producto> buscarProductos(@PathVariable (value = "nombre") String nombre){
 		System.out.println("esto es: " + nombre );
@@ -112,8 +114,7 @@ public class ProductoController {
 	}
 
 	
-	//búsqueda de productos con formato islike para encontrar productos similares
-
+	
 	
 	public List <Producto> misProductosCarrito(int idCarrito){
 		return productoService.misProductosCarrito(idCarrito);

@@ -41,7 +41,6 @@ public class BusquedaServiceIMP  implements BusquedaService{
 	public void agregarFechaProductoEliminado(int idCarrito) {
 		
 		Date fechaEliminar = new Date ();
-		
 		busquedaRepository.agregarFechaProductoEliminado(fechaEliminar, idCarrito);
 		System.out.println("la fecha eliminada se ha modificado por.." + fechaEliminar  + "id carrotp" + idCarrito);
 	}
