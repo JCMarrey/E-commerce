@@ -47,7 +47,7 @@ public class ProductoServiceIMP implements ProductoService {
 	}
 
 	
-	//para leer los productos escritos
+	//para leer los productos que se van a buscar
 	@Override
 	public List<Producto> findAll(String keyWord) {
 		if( keyWord != null) {

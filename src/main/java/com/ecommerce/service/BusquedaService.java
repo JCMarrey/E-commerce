@@ -13,6 +13,9 @@ public interface BusquedaService {
 	
 	public int buscarUsuarioCarrito (int idCarrito);
 	
+	public void guardarBusquedaUsuario(String busqueda, int idUsuario);
 	
 	public void agregarFechaProductoEliminado (int idCarrito);
+	
+	
 }

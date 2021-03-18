@@ -5,6 +5,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.ecommerce.entity.BusquedaCliente;
 import com.ecommerce.entity.CarritoUsuarioBusqueda;
 import com.ecommerce.repository.BusquedaRepository;
 
@@ -15,6 +17,9 @@ public class BusquedaServiceIMP  implements BusquedaService{
 	BusquedaRepository busquedaRepository;
 	
 	private CarritoUsuarioBusqueda carritoUsuarioB = new CarritoUsuarioBusqueda ();
+	
+	
+	private BusquedaCliente busquedaCliente;
 	
 	@Transactional
 	@Override
@@ -43,5 +48,15 @@ public class BusquedaServiceIMP  implements BusquedaService{
 		Date fechaEliminar = new Date ();
 		busquedaRepository.agregarFechaProductoEliminado(fechaEliminar, idCarrito);
 		System.out.println("la fecha eliminada se ha modificado por.." + fechaEliminar  + "id carrotp" + idCarrito);
+	}
+
+	@Override
+	public void guardarBusquedaUsuario(String busqueda, int idUsuario) {
+
+		busquedaCliente = new BusquedaCliente ();
+		String fechaBusqueda = busquedaCliente.obtenerFechaBusqueda();
+		String horaBusqueda = busquedaCliente.obtenerHoraBusqueda();
+		busquedaRepository.guardarBusquedaUsuario(busqueda, fechaBusqueda, horaBusqueda, idUsuario);
+		
 	}
 }

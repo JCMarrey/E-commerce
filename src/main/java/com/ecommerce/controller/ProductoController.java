@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ecommerce.entity.Producto;
+import com.ecommerce.service.BusquedaService;
 import com.ecommerce.service.ProductoService;
 
 
@@ -32,6 +33,9 @@ public class ProductoController {
 	
 	@Autowired(required = true)
 	private ProductoService productoService;
+	
+	@Autowired(required = true)
+	private BusquedaService busquedaService;
 
 	//create a new producto
 	@PostMapping("/add")
@@ -104,13 +108,17 @@ public class ProductoController {
 	
 	//búsqueda de productos con formato islike para encontrar productos similares
 
-	@GetMapping("/buscarProductos/{nombre}")
-	public List <Producto> buscarProductos(@PathVariable (value = "nombre") String nombre){
+	@GetMapping("/buscarProductos/{nombre}&{idUsuario}")
+	public List <Producto> buscarProductos(@PathVariable (value = "nombre") String nombre, @PathVariable (value = "idUsuario") int idCliente){
 		System.out.println("esto es: " + nombre );
-		if (nombre != null) {
+		if (nombre != null) {  //no escribio nada
 			System.out.println("esto es: " + nombre );
 			productoService.findAll(nombre);
 		}
+		
+		//se agrega el registro d ela busqueda a la tabla busquedaCliente
+		busquedaService.guardarBusquedaUsuario(nombre, idCliente);
+		
 		//personalizas este return para que nos mande algún error
 		return productoService.findAll(nombre);
 	}
@@ -132,6 +140,10 @@ public class ProductoController {
 		return productoService.findProductosCategoria(categoria);
 		
 	}
+	
+	//método para enlistar todas las categorias
+	
+	
 	
 
 }

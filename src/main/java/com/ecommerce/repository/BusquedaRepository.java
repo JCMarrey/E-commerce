@@ -27,5 +27,12 @@ public interface BusquedaRepository extends JpaRepository <CarritoUsuarioBusqued
 			nativeQuery = true)
 	public int buscarUsuarioCarrito (int idCarrito);
 	
-	
+	@Modifying
+	@Transactional
+	@Query(
+			
+			value = "INSERT INTO busqueda_cliente(descripcion_busqueda,fecha_busqueda, hora_busqueda, id_usuario)"
+					+ "values (?1,?2,?3,?4) ",
+			nativeQuery = true)
+	public void guardarBusquedaUsuario (String descripcionBusqueda, String fechaBusqueda, String horaBusqueda, int idUsuario);
 }
