@@ -23,7 +23,7 @@ public class ClienteServiceIMP implements ClienteService {
 		Iterable<Cliente> clientes = clienteRepository.findAll();
 		for (Cliente clienteN : clientes) {
 			//si existe algún usuario con el mismo nombre de usuario no se agrega.
-			if (clienteN.getNombreUsuario().equalsIgnoreCase(c.getNombreUsuario())) {
+			if (clienteN.getCorreoElectronico().equalsIgnoreCase(c.getCorreoElectronico())) {
 				return null;
 			}
 		}	
