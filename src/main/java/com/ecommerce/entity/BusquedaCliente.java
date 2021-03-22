@@ -1,6 +1,7 @@
 package com.ecommerce.entity;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -90,6 +91,7 @@ public class BusquedaCliente {
 		Date fechaBusqueda = new Date();
 		SimpleDateFormat fechaActual = new SimpleDateFormat("hh:mm:ss");
 		return fechaActual.format(fechaBusqueda);
+		
 	}
 	
 	public int getIdUsuario() {

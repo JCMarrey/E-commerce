@@ -48,19 +48,16 @@ public class ClienteController {
 			return ResponseEntity.ok(oCliente);
 		}
 		
-		@PostMapping("/login/{nombreUsuario}&{password}")
-		public String login(@PathVariable (value = "nombreUsuario") String nombreUsuario, @PathVariable
-				(value = "password") String password){
+		@PostMapping("/login")
+		public int login(@RequestBody Cliente c){
 			
-			Cliente clienteSesion = clienteService.findClienteSesion(nombreUsuario,password);
+			Cliente clienteSesion = clienteService.findClienteSesion(c.getNombreUsuario(),c.getPassword());
 			if(clienteSesion == null) {
-				//agregar la vista con datos erroneos
-				return "error verificar campos";
+				//agregar la vista con datos erroneos significa que no hay carrito o algo esta mal en los datos
+				return 0;
 			}
-			//hay que buscar al carrito correspondiente a nuestro cliente que ya inicio sesión
 			
-			int idCarrio = clienteService.buscarCarritoUsuario(nombreUsuario);
-				//continuar con la vista generar de productos
-			return "Usuario iniciando sesión... urlListaProductos " + " idCarrio: " + String.valueOf(idCarrio) + " userName ="+ nombreUsuario;
+			//buscarIDUsuaario;
+			return clienteService.buscarIdUsuario(c.getNombreUsuario());
 		}
 }

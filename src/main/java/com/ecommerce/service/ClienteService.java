@@ -17,4 +17,6 @@ public interface ClienteService {
 	public Cliente findClienteSesion (String nombre,String password);
 
 	public int  buscarCarritoUsuario (String nombreUsuario);
+	
+	public int buscarIdUsuario (String nombreUsuario);
 }

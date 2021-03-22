@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ecommerce.entity.Carrito;
 import com.ecommerce.entity.Cliente;
+import com.ecommerce.entity.Favorito;
 import com.ecommerce.repository.ClienteRespository;
 
 @Service
@@ -32,6 +33,12 @@ public class ClienteServiceIMP implements ClienteService {
 		Carrito miCarrito = new Carrito ();
 		c.setCarritoCompras(miCarrito);
 		miCarrito.setCliente(c);
+		
+
+		//generar el idFavoritos  aparte guardar al nuevo usuario...
+		Favorito favorito = new Favorito ();
+		c.setFavoritos(favorito);
+		favorito.setCliente(c);
 		return clienteRepository.save(c);
 	}
 	
@@ -63,6 +70,12 @@ public class ClienteServiceIMP implements ClienteService {
 	@Override
 	public int  buscarCarritoUsuario(String nombreUsuario) {
 		return clienteRepository.buscarCarritoUsuario(nombreUsuario);
+	}
+
+	@Override
+	public int buscarIdUsuario(String nombreUsuario) {
+		
+		return clienteRepository.buscarIdUsuario(nombreUsuario);
 	}
 
 }

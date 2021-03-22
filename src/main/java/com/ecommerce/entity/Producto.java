@@ -98,6 +98,13 @@ public class Producto {
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productos")
 	private Set <Carrito> carrito = new HashSet <>();
 
+	
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productos")
+	private Set <Favorito> favorito = new HashSet <>();
+	
+	
+	
 	public int getId() {
 		return id;
 	}

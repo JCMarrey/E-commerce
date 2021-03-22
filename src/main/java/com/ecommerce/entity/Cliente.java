@@ -63,6 +63,13 @@ public class Cliente {
 	@JoinColumn ( name = "miCarritoCompras", referencedColumnName = "idCarrito")
 	private Carrito carritoCompras;
 	
+	
+	@JsonManagedReference //evitar que se meta en el bucle infinito
+	@OneToOne (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn ( name = "mi_id_favoritos", referencedColumnName = "idFavoritos")
+	private Favorito favoritos;
+	
+	
 	public Cliente() {
 		super();
 	}
@@ -195,6 +202,12 @@ public class Cliente {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Favorito getFavoritos() {
+		return favoritos;
+	}
+	public void setFavoritos(Favorito favoritos) {
+		this.favoritos = favoritos;
 	}
 	
 	

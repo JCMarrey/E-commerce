@@ -30,7 +30,7 @@ public class BusquedaController {
 		return "el usuario ha agregado un producto al carrito no se puede eliminar esta tabla "+ idProducto + "mostrar carrito"; 
 	}
 	
-	@GetMapping("/busquedas/usuario{busqueda}&{}idUsuario")
+	@GetMapping("/busquedas/usuario{busqueda}&{idUsuario}")
 	public void guardarBusquedaUsuario(@PathVariable(value = "busqueda") String busqueda,@PathVariable (value = "idUsuario") Integer idUsuario) {
 	
 		busquedaService.guardarBusquedaUsuario(busqueda,idUsuario);
