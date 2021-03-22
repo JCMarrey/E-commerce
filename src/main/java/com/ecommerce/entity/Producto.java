@@ -184,7 +184,14 @@ public class Producto {
 	public void setCarrito(Set<Carrito> carrito) {
 		this.carrito = carrito;
 	}
-	
+
+	public Set<Favorito> getFavorito() {
+		return favorito;
+	}
+
+	public void setFavorito(Set<Favorito> favorito) {
+		this.favorito = favorito;
+	}
 	
 	
 	

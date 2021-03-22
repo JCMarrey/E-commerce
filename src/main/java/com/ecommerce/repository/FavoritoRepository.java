@@ -10,7 +10,7 @@ import com.ecommerce.entity.Favorito;
 public interface FavoritoRepository extends JpaRepository <Favorito, Integer> {
 
 	@Query(
-			value = "SELECT*FROM clientes.mi_id_favoritos WHERE id_usuario = ?1",
+			value = "SELECT clientes.id_favoritos FROM  clientes WHERE clientes.id_usuario  = ?1",
 			nativeQuery = true)
 	public int  buscarIDFavoritos(int id_usuario);
 	

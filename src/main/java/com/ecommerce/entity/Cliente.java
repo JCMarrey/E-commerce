@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -58,15 +59,17 @@ public class Cliente {
 	private String ipUsuario;
 	
 
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonManagedReference //evitar que se meta en el bucle infinito
 	@OneToOne (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	@JoinColumn ( name = "miCarritoCompras", referencedColumnName = "idCarrito")
 	private Carrito carritoCompras;
 	
 	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonManagedReference //evitar que se meta en el bucle infinito
 	@OneToOne (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinColumn ( name = "mi_id_favoritos", referencedColumnName = "idFavoritos")
+	@JoinColumn ( name = "idFavoritos", referencedColumnName = "idFavoritos")
 	private Favorito favoritos;
 	
 	

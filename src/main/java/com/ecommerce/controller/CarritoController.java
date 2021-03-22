@@ -33,7 +33,8 @@ public class CarritoController {
 	@GetMapping("/addItem/{idCarrito}&{idProducto}")
 	public Producto addItemToCarrito(@PathVariable (value = "idProducto") Integer idProducto, @PathVariable (value = "idCarrito") Integer idCarrito){
 		
-		//buscar el carrito de compras 
+		
+		
 		if(carritoService.agregarProductoCarrito(idCarrito, idProducto) == null) {
 			return null; //mandar mensaje de erroor al agregar
 		}

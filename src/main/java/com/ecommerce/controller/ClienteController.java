@@ -36,16 +36,14 @@ public class ClienteController {
 			//return "usuario: " + c.getNombreUsuario() + " agregado con exito";
 		}
 	
-		@GetMapping("/buscarCliente/{id}")
-		public ResponseEntity <?> read(@PathVariable (value = "id") Integer clienteId){
-			Optional <Cliente> oCliente = clienteService.findById(clienteId);
-			
-			//SI no hay un objeto
-			if(!oCliente.isPresent()){
-				//devuelve un 404 código de error
-				return ResponseEntity.notFound().build();
-			}	
-			return ResponseEntity.ok(oCliente);
+		@GetMapping("/buscarCliente/{idCliente}")
+		public Cliente obtenerDatosCliente (@PathVariable (value = "idCliente") Integer idCliente) {
+			Cliente clienteNuevo = clienteService.obtenerDatosCliente(idCliente);
+			if(clienteService.obtenerDatosCliente(idCliente)!= null) {
+				return clienteNuevo;
+			}
+			//no hay cliente con ese ID;
+			return null;
 		}
 		
 		@PostMapping("/login")

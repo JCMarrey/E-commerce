@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table (name = "favoritos")
@@ -26,6 +27,8 @@ public class Favorito {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFavoritos;
 
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name ="favorito_producto",
@@ -34,6 +37,7 @@ public class Favorito {
 	private Set <Producto> productos = new HashSet <>();
 	
 	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonBackReference
 	@OneToOne (fetch = FetchType.LAZY, mappedBy = "favoritos", cascade = CascadeType.ALL)
 	private Cliente cliente;
@@ -67,6 +71,17 @@ public class Favorito {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+
+	public Favorito(int idFavoritos) {
+		super();
+		this.idFavoritos = idFavoritos;
+	}
+	
+	public Favorito() {
+		
+	}
+	
 	
 	
 }

@@ -25,4 +25,15 @@ public interface ClienteRespository extends JpaRepository<Cliente, Integer> {
 			value = "SELECT  id_usuario FROM clientes WHERE clientes.nombre_usuario = ?1 ",
 			nativeQuery = true)
 	public int buscarIdUsuario (String nombreUsuario);
+	
+
+	
+	@Query(
+			value = "SELECT*FROM clientes WHERE clientes.id_usuario = ?1 ",
+			nativeQuery = true)
+	public Cliente obtenerDatosCliente (int idUsuario);
+
+	
+	
+	
 }

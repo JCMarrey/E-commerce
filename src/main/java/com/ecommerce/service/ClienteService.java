@@ -10,7 +10,7 @@ public interface ClienteService {
 	
 	public Cliente  save (Cliente c);
 	
-	public Optional <Cliente> findById(Integer id);
+	public Cliente obtenerDatosCliente (int idCliente);
 
 	public Iterable<Cliente> findAll();
 

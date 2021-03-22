@@ -42,11 +42,6 @@ public class ClienteServiceIMP implements ClienteService {
 		return clienteRepository.save(c);
 	}
 	
-	@Override
-	@Transactional (readOnly = true)
-	public Optional<Cliente> findById(Integer id) {
-		return clienteRepository.findById(id);
-	}
 
 	@Override
 	@Transactional (readOnly = true)
@@ -76,6 +71,13 @@ public class ClienteServiceIMP implements ClienteService {
 	public int buscarIdUsuario(String nombreUsuario) {
 		
 		return clienteRepository.buscarIdUsuario(nombreUsuario);
+	}
+
+
+	@Override
+	public Cliente obtenerDatosCliente(int idCliente) {
+		
+		return clienteRepository.obtenerDatosCliente(idCliente);
 	}
 
 }

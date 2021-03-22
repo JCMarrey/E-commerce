@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "Carrito")
@@ -46,6 +47,7 @@ public class Carrito {
 	private float totalCantidadCarrito;
 	
 	@JsonBackReference
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@OneToOne (fetch = FetchType.LAZY, mappedBy = "carritoCompras", cascade = CascadeType.ALL)
 	private Cliente cliente;
 	

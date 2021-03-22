@@ -20,13 +20,9 @@ public class FavoritosController {
 	public String agregarArticuloFavoritos(@PathVariable (value = "idProducto") Integer idProducto, @PathVariable (value = "idUsuario") Integer idUsuario){
 		
 		
-		int idCarritoF =  favoritoService.buscarIDFavoritos(idUsuario);
-		
+		int idCarritoF = favoritoService.buscarIDFavoritos(idUsuario);
+		favoritoService.agregarProductoFavorito(idCarritoF, idProducto);
 			
-		  
-		 
-		
-		
 		return "ventana emergente se ha agregado producto a favoritos";
 		
 	}
