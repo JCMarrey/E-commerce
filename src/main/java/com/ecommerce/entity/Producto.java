@@ -100,7 +100,7 @@ public class Producto {
 
 	
 	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productos")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productosF")
 	private Set <Favorito> favorito = new HashSet <>();
 	
 	

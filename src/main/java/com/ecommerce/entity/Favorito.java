@@ -34,14 +34,14 @@ public class Favorito {
 	@JoinTable(name ="favorito_producto",
 		joinColumns = {@JoinColumn (name = "idFavoritos" )},
 		inverseJoinColumns = {@JoinColumn (name = "productoId")})
-	private Set <Producto> productos = new HashSet <>();
+	private Set <Producto> productosF = new HashSet <>();
 	
 	
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonBackReference
 	@OneToOne (fetch = FetchType.LAZY, mappedBy = "favoritos", cascade = CascadeType.ALL)
 	private Cliente cliente;
-
+	
 
 	public int getIdFavoritos() {
 		return idFavoritos;
@@ -54,12 +54,12 @@ public class Favorito {
 
 
 	public Set<Producto> getProductos() {
-		return productos;
+		return productosF;
 	}
 
 
 	public void setProductos(Set<Producto> productos) {
-		this.productos = productos;
+		this.productosF = productos;
 	}
 
 

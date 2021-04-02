@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ecommerce.entity.Producto;
 import com.ecommerce.service.BusquedaService;
+import com.ecommerce.service.InteraccionService;
 import com.ecommerce.service.ProductoService;
 
 
@@ -29,13 +30,14 @@ import com.ecommerce.service.ProductoService;
 public class ProductoController {
 	//inyección de dependencia
 	
-	
-	
 	@Autowired(required = true)
 	private ProductoService productoService;
 	
 	@Autowired(required = true)
 	private BusquedaService busquedaService;
+	
+	@Autowired(required = true)
+	private InteraccionService interaccionService;
 
 	//create a new producto
 	@PostMapping("/add")
@@ -46,9 +48,12 @@ public class ProductoController {
 	}
 	
 	//Read an producto por id 
-	@GetMapping("verDetallesProducto/{id}")
-	public ResponseEntity <?> read(@PathVariable (value = "id") Integer productoId){
+	@GetMapping("verDetallesProducto/{id}&{idCliente}")
+	public ResponseEntity <?> read(@PathVariable (value = "id") Integer productoId,
+			@PathVariable (value = "idCliente") Integer idCliente){
 		Optional <Producto> oProducto = productoService.verDetallesProducto(productoId);
+		
+		interaccionService.verDetallesProductoInteraccion(idCliente, productoId);
 		
 		//SI no hay un objeto
 		if(!oProducto.isPresent()){

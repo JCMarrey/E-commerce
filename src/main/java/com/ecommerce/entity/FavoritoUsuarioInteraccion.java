@@ -10,15 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="carritoUsuarioBusquedaReviews")
-public class CarritoUsuarioBusqueda {
+@Table(name="favoritoUsuarioInteracciones")
+public class FavoritoUsuarioInteraccion {
 	
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "idCarrito")
-	private int idCarrito;
+	@Column(name = "idFavoritos")
+	private int idFavorito;
 	
 	@Column (name = "idProducto")
 	private int idProducto;
@@ -32,25 +32,24 @@ public class CarritoUsuarioBusqueda {
 	@Column (name = "idUsuario")
 	private int idUsuario;
 	
-
-	public CarritoUsuarioBusqueda() {
+	
+public FavoritoUsuarioInteraccion() {
 		
 	}
 
-	public CarritoUsuarioBusqueda(int id) {
+	public FavoritoUsuarioInteraccion(int id) {
 		
 		this.id = id;
 	}
 
-	public CarritoUsuarioBusqueda(int id, int idCarrito, int idProducto, Date fechaAgregado, Date fechaEliminado, int idUsuario) {
+	public FavoritoUsuarioInteraccion(int id, int idFavorito, int idProducto, Date fechaAgregado, Date fechaEliminado, int idUsuario) {
 		
 		this.id = id;
-		this.idCarrito = idCarrito;
+		this.idFavorito = idFavorito;
 		this.idProducto = idProducto;
 		this.fechaAgregado = fechaAgregado;
 		this.fechaEliminado = fechaEliminado;
 		this.idUsuario = idUsuario;
-	
 	}
 
 	public int getId() {
@@ -61,12 +60,12 @@ public class CarritoUsuarioBusqueda {
 		this.id = id;
 	}
 
-	public int getIdCarrito() {
-		return idCarrito;
+	public int getIdFavorito() {
+		return idFavorito;
 	}
 
-	public void setIdCarrito(int idCarrito) {
-		this.idCarrito = idCarrito;
+	public void setIdFavorito(int idCarrito) {
+		this.idFavorito = idCarrito;
 	}
 
 	public int getIdProducto() {
@@ -100,4 +99,6 @@ public class CarritoUsuarioBusqueda {
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
+	
+
 }

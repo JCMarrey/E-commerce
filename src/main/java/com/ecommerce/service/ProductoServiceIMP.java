@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ecommerce.entity.Producto;
+import com.ecommerce.repository.FavoritoRepository;
 import com.ecommerce.repository.ProductoRepository;
 
 @Service
@@ -17,6 +18,9 @@ public class ProductoServiceIMP implements ProductoService {
 
 	@Autowired(required = true)
 	private ProductoRepository productoRepository;
+	
+	@Autowired(required = true)
+	private FavoritoRepository favoritoRepository;
 	
 	//método de lectura solo devuelve productos
 	@Override
@@ -79,6 +83,12 @@ public class ProductoServiceIMP implements ProductoService {
 			return productoRepository.productosCategoria(categoria); //paginate		
 		}
 		return productoRepository.findAll();
+	}
+
+
+	@Override
+	public List<Producto> misProductosFavoritos(int idFavoritos) {
+		return productoRepository.misProductosFavorito(idFavoritos);
 	}
 
 	

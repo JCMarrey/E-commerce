@@ -37,4 +37,7 @@ public interface ProductoService {
 	//Busqueda productos por categoria
 	public List<Producto> findProductosCategoria (String keyWord);
 	
+	//para buscar los producto agregados en favoritos
+	public List <Producto> misProductosFavoritos (int idFavoritos);
+	
 }

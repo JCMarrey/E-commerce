@@ -37,8 +37,21 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 	
 	
 	@Query(
+			value = "SELECT *FROM productos WHERE productos.id IN "
+					+ "(SELECT favorito_producto.producto_id FROM "
+					+ "favorito_producto WHERE favorito_producto.id_favoritos = ?1)",
+			nativeQuery = true)
+	
+	public List <Producto> misProductosFavorito (int idFavorito);
+	
+	
+	
+	@Query(
 			value = "SELECT*FROM productos WHERE productos.categoria = ?1",
 			nativeQuery = true)
 	public List <Producto> productosCategoria(String categoria);
+	
+	
+	
 	
 }
