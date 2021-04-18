@@ -60,10 +60,6 @@ public class ProductoServiceIMP implements ProductoService {
 		return productoRepository.findAll();
 	}
 
-	@Override
-	public Optional<Producto> verDetallesProducto(int idProducto) {
-		return this.productoRepository.findById(idProducto);
-	}
 
 	
 	@Override

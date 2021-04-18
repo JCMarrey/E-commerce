@@ -17,9 +17,10 @@ public interface InteracccionRepository extends JpaRepository <FavoritoUsuarioIn
 	@Modifying
 	@Transactional
 	@Query(
-			value = "UPDATE favorito_usuario_interacciones SET fecha_eliminado =?1 WHERE favorito_usuario_interacciones.id_favoritos= ?2 ",
+			value = "UPDATE favorito_usuario_interacciones SET fecha_eliminado =?1 WHERE favorito_usuario_interacciones.id_favoritos= ?2 and "
+					+ "favorito_usuario_interacciones.id_producto= ?3",
 			nativeQuery = true)
-	public int agregarFechaProductoEliminado (String fechaEliminada, int idFavorito);
+	public int agregarFechaProductoEliminado (String fechaEliminada, int idFavorito, int idProducto);
 	
 	@Modifying
 	@Transactional
@@ -29,6 +30,15 @@ public interface InteracccionRepository extends JpaRepository <FavoritoUsuarioIn
 					+ "values (?1,?2,?3,?4,?5) ",
 			nativeQuery = true)
 	public void guardarInteraccionUsuario (String fechaBusqueda, String fechaEliminado, int favorito, int idProducto,int idUsuario);
+	
+	@Modifying
+	@Transactional
+	@Query(
+			
+			value = "INSERT INTO interacciones_cliente(fecha_busqueda,hora_busqueda, id_cliente, id_producto)"
+					+ "values (?1,?2,?3,?4) ",
+			nativeQuery = true)
+	public void guardarInteraccionProducto (String fechaBusqueda, String hora_busqueda, int idCliente, int idProducto);
 	
 
 }

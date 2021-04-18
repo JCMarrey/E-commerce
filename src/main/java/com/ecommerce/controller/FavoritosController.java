@@ -44,17 +44,13 @@ public class FavoritosController {
 		
 		
 		favoritoService.agregarProductoFavorito(idUsuario, idProducto);
-		
-		//buscar el producto para regresarlo al fronted //opción222...
-			
-			productoEncontrado = productoRepository.buscarProducto(idProducto);
-		//		
+	
+		productoEncontrado = productoRepository.buscarProducto(idProducto);	
 		
 		int idFavorito = favoritoService.buscarIDFavoritos(idUsuario).getIdFavoritos();
 		
-		System.out.println("idFavoritos" + idFavorito);
 		
-		
+		//tabla interna oculta
 		interaccionService.guardarFavoritoUsuario(idFavorito, idProducto, idUsuario);
 		
 		
@@ -71,7 +67,6 @@ public class FavoritosController {
 		int idFavorito = favoritoService.buscarIDFavoritos(idUsuario).getIdFavoritos();
 		return productoService.misProductosFavoritos(idFavorito);
 	}
-	
 	@DeleteMapping("/borrarProductoFavorito/{idUsuario}&{idProducto}")
 	public List <Producto> borrarProductoFavorito (@PathVariable (value = "idUsuario") int idUsuario,
 			@PathVariable (value = "idProducto") int idProducto) {
@@ -81,7 +76,11 @@ public class FavoritosController {
 		favoritoService.eliminarProductoFavoritoById(idFavorito, idProducto);
 		
 		//agregar fecha eliminada a la tabla oculta
-		interaccionService.agregarFechaProductoEliminado(idFavorito);
+		
+		interaccionService.agregarFechaProductoEliminado(idFavorito, idProducto);
+		
+		System.out.println("el id del id favorito es:" + idFavorito);
+		
 		return productoService.misProductosFavoritos(idFavorito);
 	}
 	

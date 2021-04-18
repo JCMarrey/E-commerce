@@ -22,7 +22,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 	
 	
 	@Query(
-			value = "SELECT*FROM productos WHERE id = ?1",
+			value = "SELECT*FROM productos WHERE productos.id = ?1",
 			nativeQuery = true)
 	public Producto  buscarProducto(int idProducto);
 

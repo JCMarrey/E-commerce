@@ -16,11 +16,8 @@ public interface ProductoService {
 	//método para la paginación
 
 	public Page <Producto> findAll(Pageable pageable);
-	
-	//devuelve un optional
-	
-	public Optional <Producto>  verDetallesProducto(int idProducto);
 
+	
 	//guardar alguna entidad o actualizarla y regresar el producto
 	
 	public Producto save(Producto p);

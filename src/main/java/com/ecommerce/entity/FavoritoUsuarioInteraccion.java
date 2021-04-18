@@ -24,10 +24,10 @@ public class FavoritoUsuarioInteraccion {
 	private int idProducto;
 	
 	@Column (name = "fechaAgregado")
-	private Date fechaAgregado = new Date();
+	private String fechaAgregado;
 	
 	@Column (name = "fechaEliminado" )
-	private Date fechaEliminado;
+	private String fechaEliminado;
 	
 	@Column (name = "idUsuario")
 	private int idUsuario;
@@ -42,7 +42,7 @@ public FavoritoUsuarioInteraccion() {
 		this.id = id;
 	}
 
-	public FavoritoUsuarioInteraccion(int id, int idFavorito, int idProducto, Date fechaAgregado, Date fechaEliminado, int idUsuario) {
+	public FavoritoUsuarioInteraccion(int id, int idFavorito, int idProducto, String fechaAgregado, String fechaEliminado, int idUsuario) {
 		
 		this.id = id;
 		this.idFavorito = idFavorito;
@@ -76,19 +76,19 @@ public FavoritoUsuarioInteraccion() {
 		this.idProducto = idProducto;
 	}
 
-	public Date getFechaAgregado() {
+	public String getFechaAgregado() {
 		return fechaAgregado;
 	}
 
-	public void setFechaAgregado(Date fechaAgregado) {
+	public void setFechaAgregado(String fechaAgregado) {
 		this.fechaAgregado = fechaAgregado;
 	}
 
-	public Date getFechaEliminado() {
+	public String getFechaEliminado() {
 		return fechaEliminado;
 	}
 
-	public void setFechaEliminado(Date fechaEliminado) {
+	public void setFechaEliminado(String fechaEliminado) {
 		this.fechaEliminado = fechaEliminado;
 	}
 

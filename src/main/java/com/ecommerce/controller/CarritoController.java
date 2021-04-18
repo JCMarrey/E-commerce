@@ -69,6 +69,8 @@ public class CarritoController {
 	carritoService.eliminarProductoCarritoById(idCarrito, idProducto);	
 	
 	//este método solo modifica la fecha de eliminación de la tabla oculta.
+	
+	
 	busquedaService.agregarFechaProductoEliminado(idCarrito);
 	System.out.println("producto eliminado con éxito... y mostrar los restantes productos");
 	return productoService.misProductosCarrito(idCarrito);

@@ -21,6 +21,7 @@ public class InteraccionServiceIMP implements InteraccionService {
 	@Override
 	public void verDetallesProductoInteraccion(int idCliente, int idProducto) {
 		
+		
 		//recuperamos la fecha
 		Interaccion interaccion = new Interaccion ();
 		String fechaInteraccion = interaccion.getFechaBusqueda();
@@ -33,33 +34,36 @@ public class InteraccionServiceIMP implements InteraccionService {
 		interaccion.setIdCliente(idCliente);
 		interaccion.setIdProducto(idProducto);
 		
-		interaccionRepository.save(null);
+		interaccionRepository.guardarInteraccionProducto(fechaInteraccion,horaInteraccion, idCliente, idProducto);
 	}
 
 
 
 	@Override
-	public void agregarFechaProductoEliminado(int idFavorito) {
+	public void agregarFechaProductoEliminado(int idFavorito, int idProducto) {
 		SimpleDateFormat fechaEliminar = new SimpleDateFormat("dd-MM-YYYY");
 		String fechaBorrar = fechaEliminar.format(new Date());
 		
 		
-		interaccionRepository.agregarFechaProductoEliminado(fechaBorrar, idFavorito);	
+		interaccionRepository.agregarFechaProductoEliminado(fechaBorrar, idFavorito, idProducto);	
 		System.out.println("la fecha eliminada se ha modificado por.." + fechaBorrar  + "id favorito" + 
 				idFavorito);	
 	}
 	@Override
 	public void guardarFavoritoUsuario(int id_favoritos, int id_producto,
 			int id_usuario) {
-		this.favoritoInteraccion.setIdFavorito(id_usuario);
+		
+		SimpleDateFormat fecha = new SimpleDateFormat("dd-MM-YYYY");
+		String fechaAgregar = fecha.format(new Date());
+		
+		
+		this.favoritoInteraccion.setFechaAgregado(fechaAgregar);
+		this.favoritoInteraccion.setIdFavorito(id_favoritos);
 		this.favoritoInteraccion.setIdProducto(id_producto);
 		this.favoritoInteraccion.setIdUsuario(id_usuario);
 		this.favoritoInteraccion.setFechaEliminado(null);
-		interaccionRepository.save(favoritoInteraccion);
-		
+		interaccionRepository.guardarInteraccionUsuario(fechaAgregar, "", id_favoritos, id_producto, id_usuario);
 		
 	}
-	
-	
 
 }

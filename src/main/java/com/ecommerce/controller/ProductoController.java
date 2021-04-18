@@ -48,21 +48,19 @@ public class ProductoController {
 	}
 	
 	//Read an producto por id 
-	@GetMapping("verDetallesProducto/{id}&{idCliente}")
-	public ResponseEntity <?> read(@PathVariable (value = "id") Integer productoId,
+	@GetMapping("verDetallesProducto/{idProducto}&{idCliente}")
+	public Producto Producto (@PathVariable (value = "idProducto") Integer idProducto,
 			@PathVariable (value = "idCliente") Integer idCliente){
-		Optional <Producto> oProducto = productoService.verDetallesProducto(productoId);
-		
-		interaccionService.verDetallesProductoInteraccion(idCliente, productoId);
-		
-		//SI no hay un objeto
-		if(!oProducto.isPresent()){
-			//devuelve un 404 código de error
-			return ResponseEntity.notFound().build();
-		}	
-		//código de estado 200 significa que siempre hay un producto
-		return ResponseEntity.ok(oProducto);
 	
+		//Optional <Producto> oProducto = productoService.verDetallesProducto(idProducto);
+		
+		Producto productoEncontrado = productoService.buscarProducto(idProducto);
+		
+		//sirve también para saber cuándo un usuario esta encima de un objeto por 40 segundos.
+		
+		interaccionService.verDetallesProductoInteraccion(idCliente, productoEncontrado.getId());
+	
+		return productoEncontrado;		
 	}
 	
 	@GetMapping("buscarProducto/{id}")
@@ -71,31 +69,9 @@ public class ProductoController {
 		
 		return oProducto;
 	}
-	
-	
-	//update an product
-	@PutMapping("/{id}")
-	public ResponseEntity <?> update(@RequestBody Producto p, @PathVariable(value = "id") Integer productoId){
-		Optional <Producto> producto = productoService.verDetallesProducto(productoId);
-		
-		//checar si ha devuelvo algún objeto
-		if(!producto.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-		producto.get().setNombre(p.getNombre());
-		//faltan los demás campos, pero no importan.
-		
-		//estado 201 
-		return ResponseEntity.status(HttpStatus.CREATED).body(productoService.save(producto.get()));
-		
-	}
-	// delete an producto
-	
+
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity <?> delete (@PathVariable(value = "id") Integer productoId){
-		if(!productoService.verDetallesProducto(productoId).isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
 		productoService.deleteById(productoId);
 		return ResponseEntity.ok().build();
 	}
