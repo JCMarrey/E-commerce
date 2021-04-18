@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.entity.Producto;
+import com.ecommerce.repository.ProductoRepository;
 import com.ecommerce.service.FavoritoService;
 import com.ecommerce.service.InteraccionService;
 import com.ecommerce.service.ProductoService;
@@ -29,8 +30,13 @@ public class FavoritosController {
 	@Autowired(required = true)
 	InteraccionService interaccionService;
 	
+	@Autowired(required = true )
+	ProductoRepository productoRepository;
+	
+	Producto productoEncontrado = new Producto();
+	
 	@GetMapping("/addItemF/{idUsuario}&{idProducto}")
-	public int agregarArticuloFavoritos(@PathVariable (value = "idUsuario") Integer idUsuario, @PathVariable (value = "idProducto") Integer idProducto){
+	public Producto agregarArticuloFavoritos(@PathVariable (value = "idUsuario") Integer idUsuario, @PathVariable (value = "idProducto") Integer idProducto){
 		
 		System.out.println("idUsuario" + idUsuario);
 		System.out.println("idProducto" + idProducto);
@@ -39,15 +45,24 @@ public class FavoritosController {
 		
 		favoritoService.agregarProductoFavorito(idUsuario, idProducto);
 		
-		//
+		//buscar el producto para regresarlo al fronted //opción222...
+			
+			productoEncontrado = productoRepository.buscarProducto(idProducto);
+		//		
 		
 		int idFavorito = favoritoService.buscarIDFavoritos(idUsuario).getIdFavoritos();
+		
+		System.out.println("idFavoritos" + idFavorito);
+		
+		
 		interaccionService.guardarFavoritoUsuario(idFavorito, idProducto, idUsuario);
 		
-			
+		
+		
+		
 		//return "ventana emergente se ha agregado producto a favoritos";
 		//se regresa el idUsuario para seguir con la busqueda.
-		return idUsuario;
+		return productoEncontrado;
 	}
 	
 	@GetMapping("/visualizarFavoritos/{idUsuario}")

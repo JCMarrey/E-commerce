@@ -32,6 +32,7 @@ public class InteraccionServiceIMP implements InteraccionService {
 		interaccion.setHoraBusqueda(horaInteraccion);
 		interaccion.setIdCliente(idCliente);
 		interaccion.setIdProducto(idProducto);
+		
 		interaccionRepository.save(null);
 	}
 
@@ -45,12 +46,8 @@ public class InteraccionServiceIMP implements InteraccionService {
 		
 		interaccionRepository.agregarFechaProductoEliminado(fechaBorrar, idFavorito);	
 		System.out.println("la fecha eliminada se ha modificado por.." + fechaBorrar  + "id favorito" + 
-				idFavorito);
-		
+				idFavorito);	
 	}
-
-
-
 	@Override
 	public void guardarFavoritoUsuario(int id_favoritos, int id_producto,
 			int id_usuario) {
