@@ -12,6 +12,5 @@ public interface FavoritoService {
 	public void eliminarProductoFavoritoById(int idFavorito, int idProducto);
 	
 	
-	
 }
 

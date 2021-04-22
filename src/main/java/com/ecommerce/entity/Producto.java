@@ -10,10 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -102,8 +105,7 @@ public class Producto {
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productosF")
 	private Set <Favorito> favorito = new HashSet <>();
-	
-	
+
 	
 	public int getId() {
 		return id;
@@ -192,8 +194,5 @@ public class Producto {
 	public void setFavorito(Set<Favorito> favorito) {
 		this.favorito = favorito;
 	}
-	
-	
-	
 		
 }

@@ -26,7 +26,6 @@ public class Favorito {
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idFavoritos;
-
 	
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JsonIgnore
