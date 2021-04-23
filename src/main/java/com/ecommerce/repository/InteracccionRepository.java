@@ -41,4 +41,6 @@ public interface InteracccionRepository extends JpaRepository <FavoritoUsuarioIn
 	public void guardarInteraccionProducto (String fechaBusqueda, String hora_busqueda, int idCliente, int idProducto);
 	
 
+	
+
 }

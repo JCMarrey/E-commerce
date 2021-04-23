@@ -1,19 +1,11 @@
 package com.ecommerce.service;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.ecommerce.entity.Cliente;
 import com.ecommerce.entity.Compra;
-import com.ecommerce.entity.Producto;
 import com.ecommerce.repository.CompraRepository;
 
 @Service

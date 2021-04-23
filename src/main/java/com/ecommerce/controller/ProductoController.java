@@ -103,10 +103,6 @@ public class ProductoController {
 		//personalizas este return para que nos mande algún error
 		return productoService.findAll(nombre);
 	}
-
-	
-	
-	
 	public List <Producto> misProductosCarrito(int idCarrito){
 		return productoService.misProductosCarrito(idCarrito);
 	}
@@ -126,7 +122,9 @@ public class ProductoController {
 	
 	
 	
-
+	
+	
+	
 }
 
 
