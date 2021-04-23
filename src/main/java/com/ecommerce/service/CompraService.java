@@ -1,5 +1,6 @@
 package com.ecommerce.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ecommerce.entity.Compra;
@@ -16,8 +17,14 @@ public interface CompraService {
 	
 	public void cancelarCompra(int idCompra);
 	
-	public Compra verDetalleCompra(int idCompra, int idCliente);
+	//public Compra verDetalleCompra(int idCompra, int idCliente);
 	
-	public List <Compra> verCompras (int idCliente);
+	//public List <Compra> verCompras (int idCliente);
+	
+	public ArrayList <Compra> visualizarComprasPendientes(int idUsuario);
+	
+	public ArrayList<Compra> visualizarComprasCanceladas(int idUsuario);
+	
+	public ArrayList<Compra> visualizarComprasRealizadas(int idUsuario);
 	
 }

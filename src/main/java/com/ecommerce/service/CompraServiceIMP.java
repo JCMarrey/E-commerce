@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,16 +72,23 @@ public class CompraServiceIMP implements CompraService {
 		compraRepository.cancelarCompra("Cancelado", idCompra);
 	}
 
+
 	@Override
-	public Compra verDetalleCompra(int idCompra, int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Compra> visualizarComprasPendientes(int idUsuario) {
+		
+		return compraRepository.visualizarComprasPendientes(idUsuario, "Pendiente");
 	}
 
 	@Override
-	public List<Compra> verCompras(int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Compra> visualizarComprasCanceladas(int idUsuario) {
+		
+		return compraRepository.visualizarComprasCanceladas(idUsuario, "Cancelado");
+	}
+
+	@Override
+	public ArrayList<Compra> visualizarComprasRealizadas(int idUsuario) {
+		
+		return compraRepository.visualizarComprasRealizadas(idUsuario, "Concluido");
 	}
 
 }

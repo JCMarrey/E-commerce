@@ -1,5 +1,6 @@
 package com.ecommerce.controller;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,8 +77,23 @@ public class CompraController {
 		ticketService.cancelarTicket(idCompra);
 	}
 	
-
+	@GetMapping("/VisualizarComprasPendientes/{idCliente}")
+	public ArrayList <Compra> visualizarComprasPendientes (@PathVariable (value = "idCliente") Integer idCliente){
+		return compraService.visualizarComprasPendientes(idCliente);
+		
+	}
 	
-
-
+	@GetMapping("/VisualizarComprasRealizadas/{idCliente}")
+	public ArrayList <Compra> visualizarComprasRealizadas (@PathVariable (value = "idCliente") Integer idCliente){
+		return compraService.visualizarComprasRealizadas(idCliente);
+		
+	}
+	
+	@GetMapping("/VisualizarComprasCanceladas/{idCliente}")
+	public ArrayList <Compra> visualizarComprasCanceladas (@PathVariable (value = "idCliente") Integer idCliente){
+		return compraService.visualizarComprasCanceladas(idCliente);
+		
+	}
+		
+	
 }

@@ -1,5 +1,7 @@
 package com.ecommerce.repository;
 
+import java.util.ArrayList;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -37,5 +39,21 @@ public interface CompraRepository extends  JpaRepository <Compra, Integer> {
 	@Query(value = "UPDATE compras SET estado_compra =?1 where compras.id_compras =?2",
 	           nativeQuery = true)
 	public void cancelarCompra (String accion, int idCompra);
+	
+	@Query(
+			value = "SELECT*FROM compras WHERE id_usuario = ?1 and estado_compra =?2",
+			nativeQuery = true)	
+	public ArrayList<Compra> visualizarComprasPendientes(int idUsuario,String horaCompra);
 
+	
+	@Query(
+			value = "SELECT*FROM compras WHERE id_usuario = ?1 and estado_compra =?2",
+			nativeQuery = true)	
+	public ArrayList<Compra> visualizarComprasCanceladas(int idUsuario,String horaCompra);
+	
+	@Query(
+			value = "SELECT*FROM compras WHERE id_usuario = ?1 and estado_compra =?2",
+			nativeQuery = true)	
+	public ArrayList<Compra> visualizarComprasRealizadas(int idUsuario,String horaCompra);
+	
 }
