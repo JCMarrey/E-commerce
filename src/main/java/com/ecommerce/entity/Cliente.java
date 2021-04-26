@@ -120,7 +120,8 @@ public class Cliente {
 		this.sexo = sexo;
 		this.correoElectronico = correoElectronico;
 		this.password = password;
-		this.domicilio = domicilio;
+		this.domicilio = domicilio;  
+		//
 		this.telefono = telefono;
 		this.tipoTarjeta = tipoTarjeta;
 		this.numeroTarjeta = numeroTarjeta;
